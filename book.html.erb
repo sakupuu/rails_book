@@ -97,3 +97,45 @@ find・・・ID番号を引数に指定すると、そのデータを取り出�
 　　↓
 
 シードの実行（rails db:seed）
+
+## 基本的な流れ
+
+・ターミナルにてデスクトップに移動し、（cd desktop）
+
+・rails new アプリケーション名　（rails new RailsApp）
+
+　でアプリを作成。
+
+・アプリの中に移動し、（cd RailsApp）
+
+・rails server を実行し、ブラウザで確認。（http://localhost:3000/）
+
+・コントローラーを作成する（rails generate controller コントローラー名）（rails generate controller 　hello）
+
+・コントローラーファイル（hello_controller.rb）のなかにアクションメソッド(def ~ end)を追加する。
+
+　【例えば、Webブラウザにテキストを表示したいときは、アクションメソッドのなかに、
+
+　render plain:テキスト　といった形で記述すれば良い。
+
+・viewsフォルダ内の(今回ならばhelloフォルダ内に)index.html.erbという名前でファイルを作成。そこにHTMLを書き込む。ただし、Railsでは<body>タグ内に書かれる、実際に画面に表示される部分のタグだけを記述する。
+
+・スタイルシートを準備する。（スタイルシートはassetsフォルダの中にあるstylesheetsフォルダにまとめられる。この中に.scssというファイルがある。）
+
+・ルーティングの設定を行う。（configフォルダの中にある、routes.rbというファイルに書き込む）
+
+　（  get 'コントローラー/アクション'  ）
+
+　（  get 'アドレス' to: 'コントローラー#アクション'  ）
+
+　（例：get 'hello', to: 'hello#index'      helloでhelloコントローラのindexアクションにルーティン
+
+　　　　グ）
+
+⚠️HTMLのソースコードをレンダリングする際は、html_safeを使う。（例：render html: msg.html_safe）
+
+・外から値を受け取って表示する際には、クエリーパラメーターを使う。
+
+（Railsではクエリーパラメーターで送られた値は、「params」というハッシュにまとめられる）
+
+⚠️新しいアクションを作成したら、アクションのルート情報を追加する。
